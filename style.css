@@ -7,12 +7,39 @@ h1 {
     color: #0080ff;
 }
 
-.add-expense-section {
+.add-expense-section td{
     background-color: #f0f0f0;
     padding: 15px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
-
+.add-expense-section > input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.add-expense-section td:hover {
+    background-color: #e0e0e0;
+}
+tr:first-child {
+    background-color: #e0e0e0;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+input:not([type="submit"]) {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input:focus {
+    border-color: #0080ff;
+    outline: none;
+}
 #expense-list {
     background-color: #fcfcfc;
     padding: 15px;

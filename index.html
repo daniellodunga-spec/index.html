@@ -11,15 +11,75 @@
 
     <div class="add-expense-section">
         <h2>Add Expense</h2>
-        <input type="text" placeholder="Expense name">
-        <input type="number" placeholder="Amount">
-        <input type="text" placeholder="Category">
+        <form id="expense-form">
+            <input type="text" id="expense-name" placeholder="Expense name">
+            <input type="number" id="expense-amount" placeholder="Amount">
+            <input type="date" id="expense-date" placeholder="Date">
+            <select id="expense-category">
+                <option value="food">Food</option>
+                <option value="utilities">Utilities</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="transportation">Transportation</option>
+                <option value="housing">Housing</option>
+            </select>
+            <button type="submit">Add Expense</button>
+        </form>
+    </div>
+        
     </div>
 
-    <div class="expenses-section" id="expense-list">
-        <h2>Your Expenses</h2>
-        <p>No expenses yet</p>
-    </div>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Groceries</td>  
+        <td>$50.00</td>
+        <td>Food</td>
+        <td>2023-10-01</td>
+    </tr>
+    <tr>
+        <td>Electricity Bill</td>
+        <td>$75.00</td>
+        <td>Utilities</td>
+        <td>2023-10-05</td>
+    </tr>
+    <tr>
+        <td>Movie Tickets</td>
+        <td>$30.00</td>
+        <td>Entertainment</td>
+        <td>2023-10-10</td>
+    </tr>
+    <tr>
+        <td>Gas</td>
+        <td>$40.00</td>
+        <td>Transportation</td>
+        <td>2023-10-15</td>
+    </tr>
+    <tr>
+        <td>Rent</td>
+        <td>$45.00</td>
+        <td>Housing</td>
+        <td>2023-10-25</td>
+    </tr>
+    </tbody>
+
+    <!-- Inserting an image -->
+    <img src="100 dollar bill.jpg" alt="100 Dollar Bill" style="width: 300px; height: auto;">
+
+    <!-- Inserting a iframe -->
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/HQXY1dsVGbc?si=iQzGpgLRASO1Rrfa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+   <details>
+    <summary>How to use this tracker</summary>
+    <p>Use this form to enter the expense name, amount, date, and category.</p>
+ </details>
 
 </body>
 </html>
