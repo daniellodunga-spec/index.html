@@ -1,86 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Budget Tracker</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-    <h1>My Budget Tracker</h1>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>SpendWise</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="#" class="nav-item">Expenses</a>
+                <a href="#" class="nav-item">Analytics</a>
+                <a href="#" class="nav-item">Settings</a>
+            </nav>
+        </aside>
 
-    <p>Welcome to my budget tracker! Track your income and expenses in one place.</p>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-title">
+                <h1>My Budget Tracker</h1>
+            </div>
+            <div class="user-profile">
+                <span class="user-name">Daniel Lodunga</span>
+                <div class="avatar">DL</div>
+            </div>
+        </header>
 
-    <div class="add-expense-section">
-        <h2>Add Expense</h2>
-        <form id="expense-form">
-            <input type="text" id="expense-name" placeholder="Expense name">
-            <input type="number" id="expense-amount" placeholder="Amount">
-            <input type="date" id="expense-date" placeholder="Date">
-            <select id="expense-category">
-                <option value="food">Food</option>
-                <option value="utilities">Utilities</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="transportation">Transportation</option>
-                <option value="housing">Housing</option>
-            </select>
-            <button type="submit">Add Expense</button>
-        </form>
-    </div>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <p class="welcome-text">Welcome to my budget tracker! Track your income and expenses in one place.</p>
         
+            <br><br/>
+            
+            <!-- 6 Category Cards Grid -->
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Food</h3>
+                        <span class="badge">Monthly</span>
+                    </div>
+                    <p class="amount">$50.00</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Utilities</h3>
+                        <span class="badge">Monthly</span>
+                    </div>
+                    <p class="amount">$75.00</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Entertainment</h3>
+                        <span class="badge">Monthly</span>
+                    </div>
+                    <p class="amount">$30.00</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Transportation</h3>
+                        <span class="badge">Monthly</span>
+                    </div>
+                    <p class="amount">$40.00</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Housing</h3>
+                        <span class="badge">Fixed</span>
+                    </div>
+                    <p class="amount">$45.00</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Savings</h3>
+                        <span class="badge">Goal</span>
+                    </div>
+                    <p class="amount">$200.00</p>
+                </div>
+            </div>
+
+            <!-- Add Expense Form Section -->
+            <section class="add-expense-section">
+                <h2>Add Expense</h2>
+                <form id="expense-form">
+                    <input type="text" id="expense-name" placeholder="Expense name">
+                    <input type="number" id="expense-amount" placeholder="Amount">
+                    <input type="date" id="expense-date">
+                    <select id="expense-category">
+                        <option value="food">Food</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="housing">Housing</option>
+                    </select>
+                    <button type="submit">Add Expense</button>
+                </form>
+            </section>
+
+            <!-- Expense History Table -->
+            <section class="table-section">
+                <h2>Recent Transactions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Groceries</td>  
+                            <td>$50.00</td>
+                            <td>Food</td>
+                            <td>2023-10-01</td>
+                        </tr>
+                        <tr>
+                            <td>Electricity Bill</td>
+                            <td>$75.00</td>
+                            <td>Utilities</td>
+                            <td>2023-10-05</td>
+                        </tr>
+                        <tr>
+                            <td>Movie Tickets</td>
+                            <td>$30.00</td>
+                            <td>Entertainment</td>
+                            <td>2023-10-10</td>
+                        </tr>
+                        <tr>
+                            <td>Gas</td>
+                            <td>$40.00</td>
+                            <td>Transportation</td>
+                            <td>2023-10-15</td>
+                        </tr>
+                        <tr>
+                            <td>Rent</td>
+                            <td>$45.00</td>
+                            <td>Housing</td>
+                            <td>2023-10-25</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Details Dropdown -->
+            <details class="help-details">
+                <summary>How to use this tracker</summary>
+                <p>Use this form to enter the expense name, amount, date, and category.</p>
+            </details>
+        </main>
     </div>
-
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Groceries</td>  
-        <td>$50.00</td>
-        <td>Food</td>
-        <td>2023-10-01</td>
-    </tr>
-    <tr>
-        <td>Electricity Bill</td>
-        <td>$75.00</td>
-        <td>Utilities</td>
-        <td>2023-10-05</td>
-    </tr>
-    <tr>
-        <td>Movie Tickets</td>
-        <td>$30.00</td>
-        <td>Entertainment</td>
-        <td>2023-10-10</td>
-    </tr>
-    <tr>
-        <td>Gas</td>
-        <td>$40.00</td>
-        <td>Transportation</td>
-        <td>2023-10-15</td>
-    </tr>
-    <tr>
-        <td>Rent</td>
-        <td>$45.00</td>
-        <td>Housing</td>
-        <td>2023-10-25</td>
-    </tr>
-    </tbody>
-   <details>
-    <summary>How to use this tracker</summary>
-    <p>Use this form to enter the expense name, amount, date, and category.</p>
- </details>
-
 </body>
 </html>
