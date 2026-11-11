@@ -1,6 +1,6 @@
 # SpendWise - JavaScript Foundation
 
-HThis project is where I bring the SpendWise budget tracker to life using JavaScript. It’s all about making the app interactive—allowing regular users to punch in their budget and spending details, see their remaining balance calculated automatically, and get a nice financial summary right in the browser console.
+This project is where I bring the SpendWise budget tracker to life using JavaScript. It’s all about making the app interactive—allowing regular users to punch in their budget and spending details, see their remaining balance calculated automatically, and get a nice financial summary right in the browser console.
 
 ## What's Under the Hood
 
