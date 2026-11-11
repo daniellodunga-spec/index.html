@@ -1,21 +1,38 @@
-# SpendWise - JavaScript Foundation
+# SpendWise 💸
 
-This project is where I bring the SpendWise budget tracker to life using JavaScript. It’s all about making the app interactive—allowing regular users to punch in their budget and spending details, see their remaining balance calculated automatically, and get a nice financial summary right in the browser console.
+Hey there! Welcome to **SpendWise**, a personal budget tracker I built to help keep my finances organized, transparent, and easy to monitor. 
 
-## What's Under the Hood
+Managing money can sometimes feel a bit overwhelming, so I wanted to create a simple, clean, and interactive tool where I can log my daily expenses, keep an eye on category spending (like food, utilities, and housing), and see everything update instantly right on a clean dashboard.
 
-I’ve put together a few core JavaScript concepts to make this work:
+---
 
-* **Storing Info with Variables:** I used `const` to keep things secure and unchanging once the data is set, like the budget and expense totals.
-* **Handling Data:** Everything starts as a simple text input from the user, but I used `parseFloat()` to convert those numbers so we can do accurate math.
-* **User Prompts:** I'm using standard browser `prompt()` boxes to ask the user for their numbers.
-* **Doing the Math:** The code simply takes the total budget and subtracts the total expenses.
-* **Using Functions:** I built a specific function called `calculateRemainingBalance()` to handle the math. It keeps everything clean, organized, and easy to reuse if I want to expand the app later.
+## 🚀 What It Does
+- **Real-Time Category Cards:** Automatically calculates and updates spending totals for categories like Food, Utilities, Entertainment, Transportation, Housing, and Savings as you add new items.
+- **Interactive Form & Table:** Lets you drop in new expenses with custom names, amounts, dates, and category tags, instantly populating your recent transactions table.
+- **Responsive Layout:** Works smoothly whether you're checking your budget from a laptop or pulling it up on your phone.
+- **Dark Mode Ready:** Automatically adjusts its color palette based on your device's system theme preferences.
 
-## How It Works
+---
 
-1. **The Setup:** When you run the app, pop-up prompts will ask you for your total budget and what you've spent.
-2. **The Calculation:** The app passes those numbers into the function to work out what's left over.
-3. **The Results:** You’ll get a clear, labeled SpendWise summary in your developer console showing exactly where your finances stand.
+## 🛠️ Built With
+- **HTML5** for structure and form controls.
+- **CSS3** using CSS Grid, Flexbox, custom variables, and media queries.
+- **JavaScript (ES6+)** for dynamic DOM manipulation, array record handling, and event listeners.
+- **Git & GitHub** for tracking versions and code management.
+- **Netlify** for smooth, continuous cloud deployment.
 
-To see it in action, just open the `index.html` file in your browser, fill in the prompts, and check the console.
+---
+
+## 🌐 Live Demo
+You can check out the live version of SpendWise hosted on Netlify right here:  
+👉 [View SpendWise Live](https://charming-sawine.netlify.app)
+
+---
+
+## 📂 Project Structure
+```text
+spendwise/
+│
+├── index.html       # Main webpage structure and layout
+├── style.css        # Dashboard styling, grid layout, and dark mode themes
+└── script.js        # Core JavaScript logic, event handling, and DOM updates
