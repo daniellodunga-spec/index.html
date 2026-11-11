@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // 1. DOM ELEMENTS SELECTION
+    // ==========================================
     const expenseForm = document.getElementById('expense-form');
     const expenseNameInput = document.getElementById('expense-name');
     const expenseAmountInput = document.getElementById('expense-amount');
@@ -6,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const expenseCategorySelect = document.getElementById('expense-category');
     const transactionTableBody = document.querySelector('.table-section tbody');
 
-    // 2. Work with Multiple Records: Array to store all expenses
+    // ==========================================
+    // 2. DATA COLLECTION (Array of Records)
+    // ==========================================
     let expenses = [
         { name: "Groceries", amount: 50.00, category: "food", date: "2023-10-01" },
         { name: "Electricity Bill", amount: 75.00, category: "utilities", date: "2023-10-05" },
@@ -15,53 +20,66 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Rent", amount: 45.00, category: "housing", date: "2023-10-25" }
     ];
 
-    // Helper function to format currency
+    // ==========================================
+    // 3. HELPER FUNCTIONS
+    // ==========================================
+    
+    // Format numbers into standard currency string
     const formatCurrency = (amount) => {
         return `$${parseFloat(amount).toFixed(2)}`;
     };
 
-    // 3. Process Data with Loops & 4. Update Dashboard Dynamically
-    const updateDashboard = () => {
-        // Clear current table rows
-        transactionTableBody.innerHTML = '';
+    // Prevent basic HTML injection attacks for safety
+    const escapeHTML = (str) => {
+        return str.replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        }[tag] || tag));
+    };
 
-        // Object to hold running totals per category for loop processing
-        let categoryTotals = {
-            food: 0,
-            utilities: 0,
-            entertainment: 0,
-            transportation: 0,
-            housing: 0,
-            savings: 0
-        };
+    // Capitalize category names for clean UI display
+    const formatCategoryName = (category) => {
+        return category.charAt(0).toUpperCase() + category.slice(1);
+    };
 
-        // 3. Process Data with Loops: Loop through expense records
-        expenses.forEach((expense) => {
-            // Append to table dynamically
-            const newRow = document.createElement('tr');
-            const formattedCategory = expense.category.charAt(0).toUpperCase() + expense.category.slice(1);
+    // ==========================================
+    // 4. DATA PROCESSING & RENDERING (Loops)
+    // ==========================================
 
-            newRow.innerHTML = `
-                <td>${escapeHTML(expense.name)}</td>
-                <td>${formatCurrency(expense.amount)}</td>
-                <td>${formattedCategory}</td>
-                <td>${expense.date}</td>
-            `;
-            transactionTableBody.appendChild(newRow);
+    // Calculate sum totals for each category using a loop
+    const calculateCategoryTotals = (expenseList) => {
+        let totals = { food: 0, utilities: 0, entertainment: 0, transportation: 0, housing: 0, savings: 0 };
 
-            // Accumulate totals for matching categories
-            if (categoryTotals.hasOwnProperty(expense.category)) {
-                categoryTotals[expense.category] += parseFloat(expense.amount);
+        expenseList.forEach(expense => {
+            if (totals.hasOwnProperty(expense.category)) {
+                totals[expense.category] += parseFloat(expense.amount);
             }
         });
 
-        // Update the category cards on the DOM based on calculated totals
-        updateCategoryCards(categoryTotals);
+        return totals;
     };
 
-    // Helper to update the card amounts on the webpage
-    const updateCategoryCards = (totals) => {
+    // Render all transaction rows into the HTML table
+    const renderTable = (expenseList) => {
+        transactionTableBody.innerHTML = ''; // Clear current rows
+
+        expenseList.forEach(expense => {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td>${escapeHTML(expense.name)}</td>
+                <td>${formatCurrency(expense.amount)}</td>
+                <td>${formatCategoryName(expense.category)}</td>
+                <td>${expense.date}</td>
+            `;
+            
+            transactionTableBody.appendChild(row);
+        });
+    };
+
+    // Update the category cards on the dashboard dynamically
+    const renderCategoryCards = (totals) => {
         const cards = document.querySelectorAll('.card');
+
         cards.forEach(card => {
             const titleElement = card.querySelector('h3');
             const amountElement = card.querySelector('.amount');
@@ -75,44 +93,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 5. Handle User Interactions: Event listener for adding new expenses
-    expenseForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // Master function to refresh the entire UI dashboard
+    const updateDashboard = () => {
+        renderTable(expenses);
+        const categoryTotals = calculateCategoryTotals(expenses);
+        renderCategoryCards(categoryTotals);
+    };
 
+    // ==========================================
+    // 5. USER INTERACTION & EVENT LISTENERS
+    // ==========================================
+    
+    expenseForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent default form page refresh
+
+        // Grab values from inputs
         const name = expenseNameInput.value.trim();
         const amount = parseFloat(expenseAmountInput.value);
         const date = expenseDateInput.value;
         const category = expenseCategorySelect.value;
 
-        // 1. Implement Decision Making: Conditional validation checks
+        // Conditional Validation Check
         if (!name || isNaN(amount) || amount <= 0 || !date) {
-            alert('Please enter a valid expense name, a positive amount, and a date.');
+            alert('Please provide a valid name, positive amount, and date.');
             return;
         }
 
-        // Conditional feedback scenario (e.g., flagging high individual expenses)
+        // Conditional Budget Scenario Feedback
         if (amount > 100) {
-            console.warn(`Notice: High expense added (${name}: $${amount}). Consider monitoring this category closely.`);
+            console.warn(`High Expense Alert: "${name}" is $${amount.toFixed(2)}. Monitor closely.`);
         }
 
-        // Add new record to array
+        // Create new record object and push to array
         const newExpense = { name, amount, category, date };
         expenses.push(newExpense);
 
-        // Re-render and update everything dynamically
+        // Update the UI with new data
         updateDashboard();
 
-        // Reset the form
+        // Reset form inputs for next entry
         expenseForm.reset();
     });
 
-    // Security helper to prevent basic HTML injection
-    function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
-    }
-
+    // ==========================================
+    // 6. INITIAL APP LOAD
+    // ==========================================
+    updateDashboard();
+});
     // Initial render call when the page loads
     updateDashboard();
 });
